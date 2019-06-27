@@ -13,9 +13,9 @@ def post_list(request):
     #travel_details = Travel.objects.filter(id__in=Post.travel_category.through.objects.filter(post__in=post_details).values('id'))
 
     travel_details =Post.travel_category.through.objects.all()
-    print("sdgsdjhfgsjhfgsdfh", travel_details)
-        #travel_details = travel_post.travel
-    return render(request, 'blog/post_list.html', context={"post_details": post_details, 'travel_details': travel_details})
+    food_details = Post.food_category.through.objects.all()
+    return render(request, 'blog/home.html', context={"post_details": post_details, 'travel_details': travel_details,
+                                                      'food_details': food_details})
 
 def about(request):
     about_details = About.objects.all()

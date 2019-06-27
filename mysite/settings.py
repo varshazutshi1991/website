@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'blog',
     'filer',
     'easy_thumbnails',
-    'blogger',
 ]
 
 MIDDLEWARE = [

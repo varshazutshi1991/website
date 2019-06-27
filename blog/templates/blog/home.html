@@ -62,7 +62,7 @@
           <div class="collapse navbar-collapse" id="navbarMenu">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html">Home</a>
+                <a class="nav-link active" href=" ">Home</a>
               </li>
 
               <li class="nav-item dropdown">
@@ -213,6 +213,7 @@
         <div class="row blog-entries">
           <div class="col-md-12 col-lg-8 main-content">
             <div class="row">
+              {% if travel_details %}
                 {% for b in travel_details %}
 
                     <div class="col-md-6">
@@ -221,7 +222,7 @@
 
                   <div class="blog-content-body">
                     <div class="post-meta">
-                      <span class="category">Food</span>
+                      <span class="category">{{ b.travel.type_category}}</span>
                       <span class="mr-2">{{ b.post.created_date }} </span> &bullet;
                       <span class="ml-2"><span class="fa fa-comments"></span> {{ b.post.title }}</span>
                     </div>
@@ -230,6 +231,28 @@
                 </a>
               </div>
                 {% endfor %}
+              {% endif %}
+              {% if food_details %}
+                {% for f in food_details %}
+
+                    <div class="col-md-6">
+                        #<a href="blog-single/{{f.food_id}}" class="blog-entry element-animate" data-animate-effect="fadeIn">
+                          <img src="{{MEDIA_URL}} {{f.food.food_picture.url}}" alt="Image placeholder">
+
+                  <div class="blog-content-body">
+                    <div class="post-meta">
+                      <span class="category">{{ f.food.type_category}}</span>
+                      <span class="mr-2">{{ f.post.created_date }} </span> &bullet;
+                      <span class="ml-2"><span class="fa fa-comments"></span> {{ f.post.title }}</span>
+                    </div>
+<!--                    <h2>{{ b.post.text }}</h2>-->
+                  </div>
+                </a>
+              </div>
+                {% endfor %}
+
+
+              {% endif %}
 
 <!--                <div class="col-md-6">-->
 <!--                <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">-->

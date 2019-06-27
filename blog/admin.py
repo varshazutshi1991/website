@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, About, Travel, Author
+from .models import Post, About, Travel, Author, Food
 # Register your models here.
 
 
@@ -17,6 +17,11 @@ class TravelAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(Food)
+class FoodAdmin(admin.ModelAdmin):
+    pass
+
     #exclude = ('members',)
 
 # @admin.register(Travel)
