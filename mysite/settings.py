@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'travel',
     'blog',
     'filer',
-    'easy_thumbnails',
+    'easy_thumbnails'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,6 +83,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+
+    'bot':{
+        'NAME': 'hrphase2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'USER': 'postgres',
+        'PASSWORD': 'hgCKob5NLomDGeEv',
+        "HOST": "35.236.39.70",
+        "PORT": "5432",
     }
 }
 
@@ -150,4 +159,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 FILER_ENABLE_PERMISSIONS = True
+
+LOGIN_REDIRECT_URL = '/'
+
+# DATABASE_ROUTERS = ['blog.dbrouter.DatabaseAppsRouter']
+# DATABASE_APPS_MAPPING = {'default_db': 'default',
+#                          'bot_db':'bot'}
+
+#DATABASE_ROUTERS = ['website.dbrouter.DbRouter']
 

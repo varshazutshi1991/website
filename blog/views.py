@@ -2,8 +2,9 @@ from django.shortcuts import render, HttpResponseRedirect
 from .models import Post, About, Travel
 from django.shortcuts import get_object_or_404, render
 from .models import *
-from .forms import *
+from .forms import ContributeForm
 from django.forms.models import modelformset_factory
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -29,27 +30,28 @@ def travel_info(request, travel_id):
     travel_info = Travel.objects.get(id=travel_id)
     return render(request, 'blog/blog-single.html', {'travel_info': travel_info})
 
+def user_contribution(request):
+    if request.method == 'POST':
+        form = ContributeForm(request.POST, action="{% url 'post_list' %}")
+        if form.is_valid():
+            u = form.save()
+            return HttpResponseRedirect('about')
+            #users = ContributeForm.objects.all()
 
-#@csrf_protect
-# def travel_info(request, travel_id):
-#     template = 'blog/blog-single.html'
-#     ImageFormSet = modelformset_factory(Travel, form=ImageForm, extra=15)
-#     if request.method == 'POST':
-#         user_form = Travel(request.POST, prefix='form1')
-#         formset = ImageFormSet(request.POST, request.FILES, queryset=Travel.objects.none(), prefix='form2')
-#
-#         if user_form.is_valid() and formset.is_valid():
-#             # Save User form, and get user ID
-#             a = user_form.save(commit=False)
-#             a.save()
-#
-#             images = formset.save(commit=False)
-#             for image in images:
-#                 image.user = a
-#                 image.save()
-#
-#             return HttpResponseRedirect('/success/')
-#         else:
-#             user_form = Travel(prefix='form1')
-#             formset = ImageFormSet(queryset=Travel.objects.none(), prefix='form2')
-#         return render(request, template, {'form_user':user_form,'formset':formset})
+            #return render(request, 'blog/home.html')
+
+
+
+    else:
+        form_class = ContributeForm
+
+    return render(request, 'blog/contribution.html', {
+        'form': form_class,
+    })
+
+    #user_contribute_field = Contribute.objects.all()
+    # form =ContributeForm
+    # if request.method == 'POST':
+    #     if form.is_valid():
+    #         form.save()
+    # return render(request, 'blog/contribution.html', {'form': form}

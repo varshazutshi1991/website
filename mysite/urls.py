@@ -23,6 +23,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('homepage/', include('travel.urls')),
     path('', include('blog.urls')),
+    path('accounts/', include('django.contrib.auth.urls'))
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

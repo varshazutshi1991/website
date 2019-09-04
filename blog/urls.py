@@ -8,6 +8,7 @@ urlpatterns = [
     path('about', views.about, name="about"),
     path('category/<int:travel_id>', views.category, name='category'),
     path('blog-single/<int:travel_id>', views.travel_info, name='travel_info'),
+    path('contribute/', views.user_contribution, name='contribution')
     #path('category', views.category, name='category')
 ]
 
