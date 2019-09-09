@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, About, Travel, Author, Food, Contribute
+from .models import Post, About, Travel, Author, Food, Contribute, Blog
 # Register your models here.
 
 
@@ -44,6 +44,12 @@ class AuthorAdmin(admin.ModelAdmin):
 @admin.register(Contribute)
 class ContributeAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(Blog)
+class BlogAdmin(admin.ModelAdmin):
+    pass
+
 
 #
 # admin.site.register(Post, PostAdmin)

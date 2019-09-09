@@ -105,14 +105,14 @@
 
         <div class="row blog-entries">
           <div class="col-md-12 col-lg-8 main-content">
-            <h1 class="mb-4">{{ travel_info.destination_title }}</h1>
+            <h1 class="mb-4">{{ blog_info.destination_title }}</h1>
             <div class="post-meta">
                         <span class="category">Food</span>
-                        <span class="mr-2">{{ travel_info.created_date }} </span> &bullet;
+                        <span class="mr-2">{{ blog_info.created_date }} </span> &bullet;
                         <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
                       </div>
             <div class="post-content-body">
-              <p>{{ travel_info.destination_description}}</p>
+              <p>{{ blog_info.destination_description}}</p>
               <div class="col-md-12 mb-4 element-animate">
                 <img src="{{MEDIA_URL}} {{travel_info.destination_images.url}}" alt="Image placeholder" class="img-fluid">
               </div>

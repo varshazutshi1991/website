@@ -1,8 +1,6 @@
 from django.db import models
-from django.conf import settings
 from django.utils import timezone
-from filer.fields.image import FilerImageField
-from django.db.models.signals import post_save, pre_save
+
 
 class Travel(models.Model):
     destination = models.CharField(max_length=200)
@@ -11,10 +9,6 @@ class Travel(models.Model):
     destination_description = models.TextField()
     type_category = models.CharField(max_length=200, null=True)
     destination_images = models.ImageField(upload_to='images/%Y/%m/%d', null=True)
-
-    #def Meta:
-    #image= FilerImageField(related_name="image_covers", on_delete=True, null=False)
-
 
     def create_author(sender, instance, **kwargs):
         print("instance")
@@ -40,6 +34,24 @@ class Food(models.Model):
     food_picture = models.ImageField(upload_to='images/%Y/%m/%d', null=True)
 
 
+class BlogManager(models.Manager):
+    def get_queryset(self):
+        return super(BlogManager, self).get_queryset().filter(author=True)
+
+class Blog(models.Model):
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, blank=True, null=True)
+    blog_title = models.CharField(max_length=200)
+    blog_description = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(default=timezone.now)
+    blog_picture = models.ImageField(upload_to='images/%Y/%m/%d', null=True)
+    #all_blogs = models.Manager()
+    #varsha_blog = BlogManager()
+
+
+    # class Meta:
+    #     def
+
 
 
 class Post(models.Model):
@@ -50,6 +62,8 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank=True, null=True)
     travel_category = models.ManyToManyField(Travel)
     food_category = models.ManyToManyField(Food)
+
+    all_posts = models.Manager()
 
     def publish(self):
         self.published_date = timezone.now()
