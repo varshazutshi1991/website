@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'travel',
     'blog',
     'filer',
-    'easy_thumbnails',
-    'rest_framework'
+    'easy_thumbnails'
 ]
 
 MIDDLEWARE = [
